@@ -79,7 +79,7 @@ nav {
 
 .card {
   display: flex;
-  align-items: center; /* Центрируем по вертикали */
+  align-items: center; 
   width: 90%;
   max-width: 800px;
   padding: 20px;
@@ -91,24 +91,24 @@ nav {
 }
 
 .card.selected {
-  border-color: #4caf50; /* Зелёный цвет рамки */
-  border-width: 2px; /* Увеличенная толщина рамки */
+  border-color: #4caf50; 
+  border-width: 2px; 
 }
 
 .card-content {
-  flex: 1; /* Равное пространство */
-  text-align: left; /* Выравниваем по левому краю */
+  flex: 1; 
+  text-align: left; 
 }
 
 .price {
-  flex: 1; /* Равное пространство */
+  flex: 1; 
   font-weight: bold;
   font-size: 1.5em;
-  text-align: center; /* Центрируем по горизонтали */
+  text-align: center; 
 }
 
 .checkbox-container {
-  flex: 1; /* Равное пространство */
+  flex: 1; 
   display: flex;
   align-items: center;
   justify-content: flex-end; 
@@ -135,12 +135,12 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-  background-color: #4caf50; /* Зелёный цвет для выбранного состояния */
-  color: white; /* Цвет галочки */
+  background-color: #4caf50; 
+  color: white; 
 }
 
 input[type="checkbox"]:checked::before {
-  content: '✔'; /* Используем символ галочки */
+  content: '✔'; 
   font-size: 16px;
   color: white;
 }
