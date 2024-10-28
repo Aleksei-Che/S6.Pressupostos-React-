@@ -1,26 +1,11 @@
 // components/BudgetCalculator.jsx
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import ServiceCard from './ServiceCard';
+import WebOptions from './WebOptions'
 
 function BudgetCalculator() {
-  const [services, setServices] = useState({
-    seo: false,
-    ads: false,
-    web: false,
-  });
-
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  const handleCheckboxChange = (service) => {
-    const newServices = { ...services, [service]: !services[service] };
-    setServices(newServices);
-
-    const newTotal =
-      (newServices.seo ? 300 : 0) +
-      (newServices.ads ? 400 : 0) +
-      (newServices.web ? 500 : 0);
-    setTotalPrice(newTotal);
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
 
   return (
     <div className="services-container">
@@ -29,23 +14,32 @@ function BudgetCalculator() {
           serviceName="SEO"
           description="Programació d'una web responsive completa"
           price={300}
-          checked={services.seo}
-          onChange={() => handleCheckboxChange('seo')}
+          checked={state.services.seo}
+          onChange={() => dispatch({type: "TOGGLE_SERVICE", payload: 'seo'})}
         />
         <ServiceCard
           serviceName="Ads"
           description="Programació d'una web responsive completa"
           price={400}
           checked={services.ads}
-          onChange={() => handleCheckboxChange('ads')}
+          onChange={() => dispatch({type: "TOGGLE_SERVICE", payload: 'ads'})}
         />
         <ServiceCard
           serviceName="Web"
           description="Programació d'una web responsive completa"
           price={500}
           checked={services.web}
-          onChange={() => handleCheckboxChange('web')}
+          onChange={() => dispatch({type: "TOGGLE_SERVICE", payload: 'web'})}
         />
+
+        {state.service.web && (
+          <WebOptions 
+            pages={state.pages}
+            languages={state.languages}
+            onPageChange={(newPages) => dispatch({ type: "SET_PAGES", payload: newPages })}
+            onLanguagesChange={(newLanguages) => dispatch({type: "SET_LANGUAGES", payload: newLanguages})}
+          />
+        )}
       </div>
       <div className="total-price">
         <h3>Preu pressupostat: {totalPrice} €</h3>
